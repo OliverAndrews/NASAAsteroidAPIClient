@@ -1,6 +1,6 @@
-import { RequestObject } from "../../client/models/RequestObject";
+import { ResponseObject } from "../../client/models/ResponseObject";
 
 export interface IRetryPolicy
 {
-    getPolicy(request: RequestObject): string;
+    getWithPolicy(requestString: string): Promise<ResponseObject>;
 }

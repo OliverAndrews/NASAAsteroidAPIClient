@@ -4,9 +4,9 @@ import { ResponseObject } from '../models/ResponseObject';
 
 export interface IClient 
 {
-    initialize(): boolean;
-    get(): ResponseObject;
-    get(request: RequestObject): ResponseObject;
-    get(asteroid: Asteroid, request: RequestObject): ResponseObject;
-    dispose(): boolean;
+    initialize(): Promise<boolean>;
+    fetch(): Promise<ResponseObject>;
+    fetch(request: RequestObject): Promise<ResponseObject>;
+    fetch(asteroid: Asteroid, request: RequestObject): Promise<ResponseObject>;
+    dispose(): Promise<boolean>;
 }
