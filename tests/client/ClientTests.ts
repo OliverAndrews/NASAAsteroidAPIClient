@@ -12,7 +12,7 @@ describe('Tests for APIClient.ts', () => {
     
     var apiKey = "1234567890"
 
-    var configs = new ClientConfigs(apiKey, 1, 0);
+    var configs = new ClientConfigs(apiKey);
 
     var typedRequest = new RequestObject("2020-01-01", "2020-01-07");
     var typedAsteroid = new Asteroid(123456);
@@ -31,7 +31,7 @@ describe('Tests for APIClient.ts', () => {
             .setup(obj => obj.getWithPolicy(It.Is(value => typeof(value) == "string")))
             .returns(Promise.resolve(new ResponseObject(null, HTTPResponse.OK)));
 
-        var client = new APIClient(retryPolicyMoq.object(), baseURL, configs);
+        var client = new APIClient(retryPolicyMoq.object(), configs);
         await client.fetch();
 
         var verifyFunc = () => retryPolicyMoq.verify(obj => obj.getWithPolicy(baseURL), Times.Once());
@@ -45,7 +45,7 @@ describe('Tests for APIClient.ts', () => {
             .setup(obj => obj.getWithPolicy(It.Is(value => typeof(value) == "string")))
             .returns(Promise.resolve(new ResponseObject(null, HTTPResponse.OK)));
 
-        var client = new APIClient(retryPolicyMoq.object(), baseURL, configs);
+        var client = new APIClient(retryPolicyMoq.object(), configs);
 
         await client.fetch(typedRequest);
 
@@ -62,7 +62,7 @@ describe('Tests for APIClient.ts', () => {
             .setup(obj => obj.getWithPolicy(It.Is(value => typeof(value) == "string")))
             .returns(Promise.resolve(new ResponseObject(null, HTTPResponse.OK)));
 
-        var client = new APIClient(retryPolicyMoq.object(), baseURL, configs);
+        var client = new APIClient(retryPolicyMoq.object(), configs);
 
         await client.fetch(typedRequest, typedAsteroid);
 

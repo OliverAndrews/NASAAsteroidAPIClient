@@ -9,12 +9,10 @@ export class APIClient implements IClient
 {
 
     private readonly _httpFallbackPolicy: IRetryPolicy;
-    private readonly _defaultURL: string;
     private readonly _config: ClientConfigs;
 
-    constructor(httpFallbackPolicy: IRetryPolicy, defaultURL: string, configs: ClientConfigs){
+    constructor(httpFallbackPolicy: IRetryPolicy, configs: ClientConfigs){
         this._httpFallbackPolicy = httpFallbackPolicy;
-        this._defaultURL = defaultURL;
         this._config = configs;
     }
 
