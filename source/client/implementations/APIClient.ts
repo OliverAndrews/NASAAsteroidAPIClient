@@ -26,31 +26,26 @@ export class APIClient implements IClient
 
     public async fetch(request: RequestObject): Promise<ResponseObject>; // Second overload
 
-    public async fetch(asteroid: Asteroid, request: RequestObject): Promise<ResponseObject>; // Third overload
+    public async fetch(request: RequestObject, asteroid: Asteroid): Promise<ResponseObject>; // Third overload
 
-    public async fetch(asteroid?: any, request?: any) { // Overload definition
+    public async fetch(request?: any, asteroid?: any) { // Overload definition
         var payload: ResponseObject;
         try 
         {
             if(asteroid == null && request == null)
             {
-                payload = await this._httpFallbackPolicy.getWithPolicy(this._defaultURL);
+                payload = await this._httpFallbackPolicy.getWithPolicy(`https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${this._config.ApiKey}`);
     
             } else if (asteroid == null && request != null){
     
                 var typedRequest = request as RequestObject;
-                var url = `https://api.nasa.gov/neo/rest/v1/feed?\
-                            start_date=${typedRequest.StartDate}\
-                            &end_date=${typedRequest.EndDate}\
-                            &api_key=${this._config.ApiKey}`;
+                var url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${typedRequest.StartDate}&end_date=${typedRequest.EndDate}&api_key=${this._config.ApiKey}`;
                 payload = await this._httpFallbackPolicy.getWithPolicy(url);
     
             } else if (asteroid != null && request != null){
     
                 var typedAsteroid = asteroid as Asteroid;
-                var url = `https://api.nasa.gov/neo/rest/v1/neo/\
-                            ${typedAsteroid.AsteroidID}\
-                            ?api_key=${this._config.ApiKey}`;
+                var url = `https://api.nasa.gov/neo/rest/v1/neo/${typedAsteroid.AsteroidID}?api_key=${this._config.ApiKey}`;
                 payload = await this._httpFallbackPolicy.getWithPolicy(url);
     
             }  else {

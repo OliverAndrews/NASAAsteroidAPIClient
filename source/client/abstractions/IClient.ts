@@ -7,6 +7,6 @@ export interface IClient
     initialize(): Promise<boolean>;
     fetch(): Promise<ResponseObject>;
     fetch(request: RequestObject): Promise<ResponseObject>;
-    fetch(asteroid: Asteroid, request: RequestObject): Promise<ResponseObject>;
+    fetch(request: RequestObject, asteroid: Asteroid): Promise<ResponseObject>;
     dispose(): Promise<boolean>;
 }
