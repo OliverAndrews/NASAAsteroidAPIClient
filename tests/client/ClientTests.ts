@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { APIClient } from '../../source/client/implementations/APIClient';
 import { ClientConfigs } from '../../source/client/models/ClientConfigs';
-import {Mock, It, Times} from 'moq.ts';
+import { Mock, It, Times } from 'moq.ts';
 import { IRetryPolicy } from '../../source/fallback/abstractions/IRetryPolicy';
 import { ResponseObject } from '../../source/client/models/ResponseObject';
 import { HTTPResponse } from '../../source/resources/enums/HTTPResponse';
