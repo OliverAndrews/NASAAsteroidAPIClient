@@ -2,7 +2,6 @@ import { ResponseObject } from "../../client/models/ResponseObject";
 import { IRetryPolicy } from "../abstractions/IRetryPolicy";
 import * as polly from 'polly-js';
 import axios from "axios";
-import { HTTPResponse } from "../../resources/enums/HTTPResponse";
 
 export class PollyJSRetryPolicy implements IRetryPolicy
 {
