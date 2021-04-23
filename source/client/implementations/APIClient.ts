@@ -5,7 +5,7 @@ import { RequestObject } from '../models/RequestObject';
 import { ResponseObject } from '../models/ResponseObject';
 import { ClientConfigs } from '../models/ClientConfigs';
 
-export class APIClient implements IClient
+export class AsteroidAPIClient implements IClient
 {
 
     private readonly _httpFallbackPolicy: IRetryPolicy;

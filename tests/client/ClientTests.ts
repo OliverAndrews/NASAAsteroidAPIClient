@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { APIClient } from '../../source/client/implementations/APIClient';
+import { AsteroidAPIClient } from '../../source/client/implementations/APIClient';
 import { ClientConfigs } from '../../source/client/models/ClientConfigs';
 import { Mock, It, Times } from 'moq.ts';
 import { IRetryPolicy } from '../../source/fallback/abstractions/IRetryPolicy';
@@ -31,7 +31,7 @@ describe('Tests for APIClient.ts', () => {
             .setup(obj => obj.getWithPolicy(It.Is(value => typeof(value) == "string")))
             .returns(Promise.resolve(new ResponseObject(null, HTTPResponse.OK)));
 
-        var client = new APIClient(retryPolicyMoq.object(), configs);
+        var client = new AsteroidAPIClient(retryPolicyMoq.object(), configs);
         await client.fetch();
 
         var verifyFunc = () => retryPolicyMoq.verify(obj => obj.getWithPolicy(baseURL), Times.Once());
@@ -45,7 +45,7 @@ describe('Tests for APIClient.ts', () => {
             .setup(obj => obj.getWithPolicy(It.Is(value => typeof(value) == "string")))
             .returns(Promise.resolve(new ResponseObject(null, HTTPResponse.OK)));
 
-        var client = new APIClient(retryPolicyMoq.object(), configs);
+        var client = new AsteroidAPIClient(retryPolicyMoq.object(), configs);
 
         await client.fetch(typedRequest);
 
@@ -62,7 +62,7 @@ describe('Tests for APIClient.ts', () => {
             .setup(obj => obj.getWithPolicy(It.Is(value => typeof(value) == "string")))
             .returns(Promise.resolve(new ResponseObject(null, HTTPResponse.OK)));
 
-        var client = new APIClient(retryPolicyMoq.object(), configs);
+        var client = new AsteroidAPIClient(retryPolicyMoq.object(), configs);
 
         await client.fetch(typedRequest, typedAsteroid);
 
