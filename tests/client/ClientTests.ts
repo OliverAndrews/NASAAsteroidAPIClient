@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { AsteroidAPIClient } from '../../source/client/implementations/APIClient';
+import { AsteroidAPIClient } from '../../source/client/implementations/AsteroidAPIClient';
 import { ClientConfigs } from '../../source/client/models/ClientConfigs';
 import { Mock, It, Times } from 'moq.ts';
 import { IRetryPolicy } from '../../source/fallback/abstractions/IRetryPolicy';
@@ -8,7 +8,7 @@ import { HTTPResponse } from '../../source/resources/enums/HTTPResponse';
 import { RequestObject } from '../../source/client/models/RequestObject';
 import { Asteroid } from '../../source/client/models/Asteroid';
 
-describe('Tests for APIClient.ts', () => {
+describe('Tests for AsteroidAPIClient.ts', () => {
     
     var apiKey = "1234567890"
 
